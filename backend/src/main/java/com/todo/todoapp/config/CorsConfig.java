@@ -10,14 +10,19 @@ public class CorsConfig {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
+
         return new WebMvcConfigurer() {
+
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+
                 registry.addMapping("/**")
-                        .allowedOrigins("https://todo-app-cljb.vercel.app")
+                        .allowedOriginPatterns("https://todo-app-cljb.vercel.app")
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(false);
+                        .allowCredentials(false)
+                        .maxAge(3600);
+
             }
         };
     }
