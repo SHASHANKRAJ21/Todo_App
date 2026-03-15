@@ -1,0 +1,17 @@
+.empty-state {
+  text-align: center; padding: 4.5rem 1rem;
+  animation: fadeIn 0.3s ease;
+}
+.empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.45; }
+.empty-title {
+  font-size: 1.1rem; font-weight: 700; color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+.empty-sub { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.empty-btn {
+  padding: 0.65rem 1.5rem; border-radius: 10px; border: none;
+  background: var(--accent); color: #fff;
+  font-size: 0.88rem; font-weight: 600;
+  transition: all 0.15s;
+}
+.empty-btn:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 4px 16px var(--accent-glow); }
