@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8090';
+const BASE_URL = 'todoapp-production-5739.up.railway.app';
 
 const api = axios.create({
   baseURL: BASE_URL,
