@@ -13,11 +13,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            .cors(Customizer.withDefaults()) // ✅ REQUIRED in Spring Boot 4
+            .cors(Customizer.withDefaults()) // ✅ enables your CorsConfig
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()
-                .anyRequest().permitAll() // 👈 IMPORTANT (for now)
+                .requestMatchers("/**").permitAll() // ✅ allow ALL for now
             );
 
         return http.build();
