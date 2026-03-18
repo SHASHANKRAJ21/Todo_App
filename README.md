@@ -7,8 +7,7 @@ A full-stack task management web application built with **React** and **Spring B
 ---
 
 ## 📸 Screenshots
-
-> _Add screenshots here_
+<img width="1918" height="898" alt="image" src="https://github.com/user-attachments/assets/744766d6-37d4-412a-b464-7097c01886e3" />
 
 ---
 
