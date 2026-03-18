@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -17,17 +18,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            // 🔥 Disable CSRF (important for frontend API calls)
             .csrf(csrf -> csrf.disable())
 
-            // 🔥 Enable CORS with your config
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
-            // 🔥 Authorization rules
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()   // login/signup allowed
-                .requestMatchers("/todos/**").permitAll()  // allow todos (FIXED)
-                .anyRequest().authenticated()              // others need auth
+                // ✅ VERY IMPORTANT: allow preflight requests
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/todos/**").permitAll()
+
+                .anyRequest().authenticated()
             );
 
         return http.build();
@@ -38,7 +40,6 @@ public class SecurityConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        // 🔥 Your frontend URL
         config.setAllowedOrigins(List.of(
             "https://todo-app-cljb.vercel.app"
         ));
@@ -48,8 +49,6 @@ public class SecurityConfig {
         ));
 
         config.setAllowedHeaders(List.of("*"));
-
-        // 🔥 Important for cookies / auth headers
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
