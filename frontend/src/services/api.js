@@ -5,6 +5,7 @@ const BASE_URL = 'https://renewed-consideration-production.up.railway.app';
 const api = axios.create({
   baseURL: BASE_URL,
   headers: { 'Content-Type': 'application/json' },
+  withCredentials: false, 
 });
 
 export const signup     = (data)         => api.post('/auth/signup', data);
